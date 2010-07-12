@@ -1,0 +1,54 @@
+Acme-Minify
+
+This packages removes most of the unnecessary characters from Perl code.
+It clean-ups most of the whitespaces, the comments, newlines and converts
+every tab in whitespace.
+
+This module is highly unstable and his behaviour could be unpredictable
+in some cases as it has not been tested very deeply. Just to make things
+obvious, it is not intended for production code.
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+	perl Makefile.PL
+	make
+	make test
+	make install
+
+SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc Acme::Minify
+
+You can also look for information at:
+
+    GitHub
+        http://github.com/AlexBio/Acme-Minify>
+
+    RT, CPAN's request tracker
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Acme-Minify
+
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/Acme-Minify
+
+    CPAN Ratings
+        http://cpanratings.perl.org/d/Acme-Minify
+
+    Search CPAN
+        http://search.cpan.org/dist/Acme-Minify/
+
+
+LICENSE AND COPYRIGHT
+
+Copyright (C) 2010 Alessandro Ghedini
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
