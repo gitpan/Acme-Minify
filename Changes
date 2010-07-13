@@ -1,5 +1,113 @@
-Revision history for Acme-Minify
+commit a6ce54cdc61c3ccba67c15ab5feca69515792939
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:47:25 2010 +0200
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+    update VERSION
 
+commit c61ce593ebe8ab30c2277e606d823455e8225ca1
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:46:13 2010 +0200
+
+    add Exporter in Makefile.PL prereqs
+
+commit 7f7b0f59f6bc65efcf59891a9ca8dd35011d47ce
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:44:11 2010 +0200
+
+    add better documentation
+
+commit 942800e1d23f4022a8a2e03f41b955545ce7e2c0
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:31:53 2010 +0200
+
+    add . to safe characters for whitespaces removal
+
+commit 5726ea24ed614e440e9d43ec2ad22c849433f31b
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:30:44 2010 +0200
+
+    preserve __END__ and __DATA__
+
+commit effabdcc6ebe979ac026da7605d587ce06a4c866
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:02:25 2010 +0200
+
+    add support to ` quoted strings
+
+commit cb26d93daef020c3b4688cce8dd5e6feb907da33
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 16:59:14 2010 +0200
+
+    fix code style
+
+commit a665207e3a1cfaafcad3b4cd7ee903892dc303f7
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 16:17:18 2010 +0200
+
+    improve POD removal
+
+commit 4cea2e1fee04ec21a8c2cd63fb56d599cf7d69b6
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 18:38:23 2010 +0200
+
+    improve plminify script
+
+commit c37e1e2978cea163f78d3416ee15867858e57540
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 18:36:04 2010 +0200
+
+    remove string_char flag (replaced by flag string)
+
+commit c821354d7f1580e4f74191f0ffdff4cc6b69533e
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 18:31:04 2010 +0200
+
+    keep regexes
+
+commit 6d578c346409acef5e6b2ed8364c6e5fdf3bd6dc
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 18:21:26 2010 +0200
+
+    remove skip flag
+
+commit 9053138d6d687aa510f9abc00661cfa42f431802
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 17:55:46 2010 +0200
+
+    fix wrong sobstitution of # in strings, and tabs
+
+commit 4fc6dc73dd71badebf1912c8f88eefd2f266c4e8
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 17:36:41 2010 +0200
+
+    add description in README
+
+commit fe0184d125f7a4b6f100c86a791a5025d01617f0
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 17:33:46 2010 +0200
+
+    add GitHub link in documentation
+
+commit 496a84df83dce0cefbf031d1497a44aebe33cc21
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 17:30:38 2010 +0200
+
+    add POD removal
+
+commit 6f39d63680fb156b447e6ea7e1122adc9edb5427
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 17:12:37 2010 +0200
+
+    replace Switch with multiple if statements
+
+commit df79adab5d04466008ecec83cdfa6902262bdc80
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 15:28:34 2010 +0200
+
+    fix code style
+
+commit 615529e5ba5def49b447b7377af1e083b6f35062
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Mon Jul 12 15:19:43 2010 +0200
+
+    first commit

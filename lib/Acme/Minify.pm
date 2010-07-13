@@ -11,11 +11,11 @@ Acme::Minify - Minify that long Perl code
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION   = '0.01';
+our $VERSION   = '0.02';
 
 our @EXPORT_OK = qw(minify);
 
@@ -30,44 +30,63 @@ Acme::Minify minifies Perl code.
 =head1 DESCRIPTION
 
 This packages removes most of the unnecessary characters from Perl code.
-It clean-ups most of the whitespaces, the comments, newlines and converts
-every tab in whitespace.
+
+=over 4
+
+=item * Comments are removed
+
+=item * POD is removed
+
+=item * Quoted strings (" ' `) and regexes are preserved
+
+=item * \t and \n are converted in whitespaces
+
+=item * __DATA__ and __END__ are preserved
+
+=item * Spaces are removed if it doesn't affect syntax correcteness
+
+=back
 
 =head1 EXPORT
 
-The module export the subroutine 'minify' on request.
+The module exports the subroutine 'minify' on request.
 
 =head1 SUBROUTINES
 
 =head2 minify( $long_code )
 
-Minify the code passed
+Minify the given source code
 
 =cut
 
 sub minify {
-	my $data = shift;
+	my $code = shift;
 	my ($out, %flags);
 
 	# set flags to 0
-	$flags{'string'}  	= 0;
-	$flags{'comment'} 	= 0;
-	$flags{'regex'}		= 0;
+	$flags{'string'}  = 0;
+	$flags{'comment'} = 0;
+	$flags{'regex'}	  = 0;
 
-	# remove POD with regex
-	$data =~ s/=head1(\n|.)*?=cut//g;
-	my @array = split(//, $data);
+	# remove POD
+	$code =~ s/\n=head1(\n|.)*?\n=cut//g;
 
+	my ($end, $data);
+	# preserve __END__
+	if ($code =~ s/\n__END__\n((\n|.)*?)$//)  { $end = $1; }
+
+	# preserve __DATA__
+	if ($code =~ s/\n__DATA__\n((\n|.)*?)$//) { $data = $1; }
+
+	my @array = split(//, $code);
 	for (my $i = 0; $i < scalar @array; $i++) {
 		my $curr = $array[$i];
 		my $next = $array[$i+1] ? $array[$i+1] : " ";
 		my $prev = $array[$i-1];
 
-		$flags{'skip'} = 0;
-
 		# keep quoted characters
 		if ($curr eq "\\") {
-			if ($flags{'string'}) {
+			if ($flags{'string'} or $flags{'regex'}) {
 				$out .= "$curr$next";
 			}
 
@@ -76,7 +95,7 @@ sub minify {
 		}
 
 		# keep strings
-		if (($curr eq "\"") or ($curr eq "'")) {
+		if (($curr eq "\"") or ($curr eq "'") or  ($curr eq "`")) {
 			if (!$flags{'string'}) {
 				$flags{'string'} = $curr;
 			} elsif ($flags{'string'} eq $curr) {
@@ -99,32 +118,29 @@ sub minify {
 			$flags{'regex'}-- if !$flags{'string'};
 		}
 
-		# remove comments
-		if ($curr eq '#') {
-			$flags{'comment'} = 1 if $prev ne "\$" and
-						 !$flags{'string'} and
-						 !$flags{'regex'};
-		}
+		if (!$flags{'string'} and !$flags{'regex'}) {
 
-		# replace tabs with spaces
-		if ($curr eq "\t") {
-			$curr = ' ' if !$flags{'string'} and !$flags{'regex'};
-		}
+			# remove comments
+			$flags{'comment'} = 1 if ($prev ne "\$") and ($curr eq '#');
 
-		# replace newlines with spaces
-		if ($curr eq "\n") {
-			$flags{'comment'} = 0 if $flags{'comment'};
-			$curr = ' ' if !$flags{'string'} and !$flags{'regex'};
-		}
+			# replace tabs with spaces
+			$curr = ' ' if ($curr eq "\t");
 
-		# remove spaces only when it is safe 
-		if ($curr eq ' ') {
-			my @chars = ("+", "-", "=", "!", ",", ";", ">",
-				     "<", "(", ")", "[", "]", "{", "}",
-				     "\$", "@", "%", "'", "\"", "\n",
-				     "\t", " ", "~");
-			
-			if (!$flags{'string'} and !$flags{'regex'}) {
+			# replace newlines with spaces
+			if ($curr eq "\n") {
+				$flags{'comment'} = 0 if $flags{'comment'};
+				$curr = ' ';
+			}
+
+			# remove spaces only when it is safe 
+			if ($curr eq ' ') {
+				# safe whitespace removal
+				my @chars = ("+", "-", "=", "!", ",",
+					     ";", ">", "<", "(", ")",
+					     "[", "]", "{", "}", "\$",
+					     "@", "%", "'", "\"", "\n",
+					     "\t", " ", "~", ".");
+
 				foreach (@chars) {
 					if (($_ eq $prev) or ($_ eq $next)) {
 						$curr = "";
@@ -136,6 +152,9 @@ sub minify {
 		next if $flags{'comment'};
 		$out .= $curr;
 	}
+
+	$out .= "\n__END__\n$end"   if $end;
+	$out .= "\n__DATA__\n$data" if $data;
 
 	return $out;
 }
