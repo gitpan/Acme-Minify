@@ -11,11 +11,11 @@ Acme::Minify - Minify that long Perl code
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION   = '0.02';
+our $VERSION   = '0.03';
 
 our @EXPORT_OK = qw(minify);
 
@@ -23,7 +23,7 @@ our @EXPORT_OK = qw(minify);
 
 Acme::Minify minifies Perl code.
 
-    use Acme::Minify;
+    use Acme::Minify qw(minify);
 
     my $short_code = minify( $long_code );
 
