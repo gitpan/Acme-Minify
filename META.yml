@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Acme-Minify
-version:            0.03
+version:            0.04
 abstract:           Minify that long Perl code
 author:
     - Alessandro Ghedini <alexbio@cpan.org>

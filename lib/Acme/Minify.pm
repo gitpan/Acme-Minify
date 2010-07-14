@@ -15,7 +15,7 @@ Version 0.03
 
 =cut
 
-our $VERSION   = '0.03';
+our $VERSION   = '0.04';
 
 our @EXPORT_OK = qw(minify);
 
@@ -85,7 +85,7 @@ sub minify {
 		my $prev = $array[$i-1];
 
 		# keep quoted characters
-		if ($curr eq "\\") {
+		if (($curr eq "\\") and !$flags{'comment'}) {
 			if ($flags{'string'} or $flags{'regex'}) {
 				$out .= "$curr$next";
 			}
@@ -95,7 +95,9 @@ sub minify {
 		}
 
 		# keep strings
-		if (($curr eq "\"") or ($curr eq "'") or  ($curr eq "`")) {
+		if ((($curr eq "\"") or ($curr eq "'")
+				     or ($curr eq "`"))
+				     and !$flags{'comment'}) {
 			if (!$flags{'string'}) {
 				$flags{'string'} = $curr;
 			} elsif ($flags{'string'} eq $curr) {
@@ -104,7 +106,7 @@ sub minify {
 		}
 
 		# keep regexes
-		if ($curr eq "/") {
+		if (($curr eq "/") and !$flags{'comment'}) {
 			
 			if (!$flags{'regex'} and !$flags{'string'}) {
 
