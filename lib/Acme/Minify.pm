@@ -11,11 +11,11 @@ Acme::Minify - Minify that long Perl code
 
 =head1 VERSION
 
-Version 0.03
+Version 0.05
 
 =cut
 
-our $VERSION   = '0.04';
+our $VERSION   = '0.05';
 
 our @EXPORT_OK = qw(minify);
 
@@ -66,7 +66,6 @@ sub minify {
 	# set flags to 0
 	$flags{'string'}  = 0;
 	$flags{'comment'} = 0;
-	$flags{'regex'}	  = 0;
 
 	# remove POD
 	$code =~ s/\n=head1(\n|.)*?\n=cut//g;
@@ -86,9 +85,7 @@ sub minify {
 
 		# keep quoted characters
 		if (($curr eq "\\") and !$flags{'comment'}) {
-			if ($flags{'string'} or $flags{'regex'}) {
-				$out .= "$curr$next";
-			}
+			$out .= "$curr$next";
 
 			$i++;
 			next;
@@ -105,22 +102,7 @@ sub minify {
 			}
 		}
 
-		# keep regexes
-		if (($curr eq "/") and !$flags{'comment'}) {
-			
-			if (!$flags{'regex'} and !$flags{'string'}) {
-
-				if ($prev eq 's') {
-					$flags{'regex'} = 3;
-				} else {
-					$flags{'regex'} = 2;
-				}
-			}
-
-			$flags{'regex'}-- if !$flags{'string'};
-		}
-
-		if (!$flags{'string'} and !$flags{'regex'}) {
+		if (!$flags{'string'}) {
 
 			# remove comments
 			$flags{'comment'} = 1 if ($prev ne "\$") and ($curr eq '#');

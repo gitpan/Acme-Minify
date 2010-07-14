@@ -1,3 +1,33 @@
+commit fba02442c7652a404a0e7e08df9b4cb994ccf586
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Wed Jul 14 17:09:51 2010 +0200
+
+    version update
+
+commit bc72d8b249408586ecc6180a1c5c6f8a860cd7ad
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Wed Jul 14 17:09:31 2010 +0200
+
+    remove not really needed regex flag
+
+commit 21d379bba1c2de19c70b94fb84e03d4af02989b9
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Wed Jul 14 16:42:31 2010 +0200
+
+    fix wrong commets handling
+
+commit baa44f42ebf64d2ef8672710a6a1fb7624160129
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 21:44:07 2010 +0200
+
+    fix stupid error in SYNOPSIS
+
+commit 96ebd7347bf1ffe60e494235ed5a61372c27472c
+Author: Alessandro Ghedini <al3xbio@gmail.com>
+Date:   Tue Jul 13 17:48:20 2010 +0200
+
+    update Changes
+
 commit a6ce54cdc61c3ccba67c15ab5feca69515792939
 Author: Alessandro Ghedini <al3xbio@gmail.com>
 Date:   Tue Jul 13 17:47:25 2010 +0200
