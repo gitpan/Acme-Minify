@@ -1,9 +1,15 @@
 package Acme::Minify;
+BEGIN {
+  $Acme::Minify::VERSION = '0.06';
+}
 
+use Pod::Strip;
 use base Exporter;
 
 use warnings;
 use strict;
+
+our @EXPORT_OK = qw(minify);
 
 =head1 NAME
 
@@ -11,13 +17,7 @@ Acme::Minify - Minify that long Perl code
 
 =head1 VERSION
 
-Version 0.05
-
-=cut
-
-our $VERSION   = '0.05';
-
-our @EXPORT_OK = qw(minify);
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -68,7 +68,9 @@ sub minify {
 	$flags{'comment'} = 0;
 
 	# remove POD
-	$code =~ s/\n=head1(\n|.)*?\n=cut//g;
+	my $p = Pod::Strip -> new;
+	$p -> output_string(\$code);
+	$p -> parse_string_document($code);
 
 	my ($end, $data);
 	# preserve __END__
@@ -116,7 +118,7 @@ sub minify {
 				$curr = ' ';
 			}
 
-			# remove spaces only when it is safe 
+			# remove spaces only when it is safe
 			if ($curr eq ' ') {
 				# safe whitespace removal
 				my @chars = ("+", "-", "=", "!", ",",

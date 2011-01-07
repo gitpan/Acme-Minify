@@ -1,11 +1,15 @@
 Changes
+LICENSE
 MANIFEST
+META.json
+META.yml
 Makefile.PL
 README
+bin/plminify
+dist.ini
 lib/Acme/Minify.pm
-script/plminify
 t/00-load.t
+t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
-META.yml                                 Module meta-data (added by MakeMaker)
