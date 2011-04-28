@@ -11,7 +11,7 @@ plminify - Perl code minifier
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -33,48 +33,7 @@ print minify($data)."\n";
 
 =head1 AUTHOR
 
-Alessandro Ghedini, C<< <alexbio at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-acme-minify at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Acme-Minify>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc plminify
-
-You can also look for information at:
-
-=over 4
-
-=item * GitHub
-
-L<http://github.com/AlexBio/Acme-Minify>
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Acme-Minify>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Acme-Minify>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Acme-Minify>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Acme-Minify/>
-
-=back
-
-
-=head1 ACKNOWLEDGEMENTS
+Alessandro Ghedini <alexbio@cpan.org>
 
 =head1 LICENSE AND COPYRIGHT
 

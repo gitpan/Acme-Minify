@@ -2,6 +2,52 @@
 9999-99-99 99:99:99 +0000 HEAD
 ==============================
 
+  commit 705ba3d49007f6bbfc52abb5c69d59970644432e
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Thu Apr 28 18:16:41 2011 +0200
+  
+    bump version
+
+  commit 371c01e3d568415be1ed1c563621bb63d4e1a2a8
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Thu Apr 28 17:35:36 2011 +0200
+  
+    fix Pod::Strip code
+
+  commit cdfc9d1180d70a46f6266fe4d6e1afb65c2d5282
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Thu Apr 28 17:27:15 2011 +0200
+  
+    fix regexes minification
+
+  commit b1b5f7995be9642e1731801915b0041eccc40aba
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Thu Apr 28 17:09:25 2011 +0200
+  
+    better test suite
+
+  commit 11706399175f8bebef52300546bfbed182a466af
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Mon Apr 25 18:52:07 2011 +0200
+  
+    use Author::ALEXBIO dzil bundle
+
+  commit eeceeffdb9ca1900f2ff47f75d2df406415e0e6a
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Thu Mar 17 19:44:04 2011 +0100
+  
+    use @GitHub plugin bundle
+
+  commit af05fb750646c50fea36ad4aaa8d79d2bfe9ffb9
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date:   Thu Mar 17 19:43:28 2011 +0100
+  
+    purge cruft from docs 
+
+===============================
+2011-01-07 15:44:05 +0100 v0.06
+===============================
+
   commit 69663002f33296a9ec595bb05fdcdb6cdc3ed472
   Author: Alessandro Ghedini <al3xbio@gmail.com>
   Date:   Fri Jan 7 15:44:05 2011 +0100

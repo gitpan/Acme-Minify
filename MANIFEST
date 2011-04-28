@@ -9,6 +9,13 @@ bin/plminify
 dist.ini
 lib/Acme/Minify.pm
 t/00-load.t
+t/01-minify-base.t
+t/01-minify-data.t
+t/01-minify-end.t
+t/01-minify-here-doc.t
+t/01-minify-pod.t
+t/01-minify-regex.t
+t/01-minify-strings.t
 t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t

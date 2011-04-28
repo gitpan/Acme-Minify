@@ -1,6 +1,6 @@
 package Acme::Minify;
 BEGIN {
-  $Acme::Minify::VERSION = '0.06';
+  $Acme::Minify::VERSION = '0.07';
 }
 
 use Pod::Strip;
@@ -17,7 +17,7 @@ Acme::Minify - Minify that long Perl code
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -66,11 +66,14 @@ sub minify {
 	# set flags to 0
 	$flags{'string'}  = 0;
 	$flags{'comment'} = 0;
+	$flags{'regex'} = 0;
 
 	# remove POD
+	my $tmp;
 	my $p = Pod::Strip -> new;
-	$p -> output_string(\$code);
+	$p -> output_string(\$tmp);
 	$p -> parse_string_document($code);
+	$code = $tmp;
 
 	my ($end, $data);
 	# preserve __END__
@@ -93,6 +96,18 @@ sub minify {
 			next;
 		}
 
+		# keep regexes
+		if (($curr eq "/") and !$flags{'comment'}) {
+			if (!$flags{'regex'} and !$flags{'string'}) {
+				if ($prev eq 's') {
+					$flags{'regex'} = 3;
+				} else {
+					$flags{'regex'} = 2;
+				}
+			}
+			$flags{'regex'}-- if !$flags{'string'};
+		}
+
 		# keep strings
 		if ((($curr eq "\"") or ($curr eq "'")
 				     or ($curr eq "`"))
@@ -104,7 +119,7 @@ sub minify {
 			}
 		}
 
-		if (!$flags{'string'}) {
+		if ((!$flags{'string'}) and (!$flags{'regex'})) {
 
 			# remove comments
 			$flags{'comment'} = 1 if ($prev ne "\$") and ($curr eq '#');
@@ -147,45 +162,7 @@ sub minify {
 
 =head1 AUTHOR
 
-Alessandro Ghedini, C<< <alexbio at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-acme-minify at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Acme-Minify>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Acme::Minify
-
-You can also look for information at:
-
-=over 4
-
-=item * GitHub
-
-L<http://github.com/AlexBio/Acme-Minify>
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Acme-Minify>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Acme-Minify>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Acme-Minify>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Acme-Minify/>
-
-=back
+Alessandro Ghedini <alexbio@cpan.org>
 
 =head1 ACKNOWLEDGEMENTS
 
